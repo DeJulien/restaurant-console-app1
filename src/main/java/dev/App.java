@@ -8,12 +8,21 @@ import dev.service.PlatServiceVersion2;
 
 import java.util.Scanner;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class App {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+    	
+    	
+    	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext
+    			("application-config.xml");
+    			  Scanner scanner = context.getBean(Scanner.class);
 
+    	
+        
+/*
         PlatDaoMemoire platDaoMemoire = new PlatDaoMemoire();
 
         // TODO adapter le chemin du fichier (utiliser un rÃ©pertoire existant)
@@ -25,9 +34,16 @@ public class App {
         Menu menu = new Menu(scanner, platServiceVersion1);
 
         
-        menu.afficher();
+        menu.afficher();*/
 
-        scanner.close();
+    			// récupération du bean Menu
+    			  Menu menu = context.getBean(Menu.class);
+    			  menu.afficher();
+    			  // fermeture du Scanner
+    			  context.getBean(Scanner.class).close();
+    			  // fermeture du contexte Spring
+    			  context.close();
+
 
 
     }
