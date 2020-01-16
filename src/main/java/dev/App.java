@@ -24,6 +24,7 @@ public class App {
 
         Menu menu = new Menu(scanner, platServiceVersion1);
 
+        
         menu.afficher();
 
         scanner.close();
